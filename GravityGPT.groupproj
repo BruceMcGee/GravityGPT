@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5C041528-0BA2-4628-B8B4-13D865C6C378}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Gravity01\Gravity01.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Gravity02\Gravity02.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Gravity01">
+        <MSBuild Projects="Gravity01\Gravity01.dproj"/>
+    </Target>
+    <Target Name="Gravity01:Clean">
+        <MSBuild Projects="Gravity01\Gravity01.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gravity01:Make">
+        <MSBuild Projects="Gravity01\Gravity01.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Gravity02">
+        <MSBuild Projects="Gravity02\Gravity02.dproj"/>
+    </Target>
+    <Target Name="Gravity02:Clean">
+        <MSBuild Projects="Gravity02\Gravity02.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Gravity02:Make">
+        <MSBuild Projects="Gravity02\Gravity02.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Gravity01;Gravity02"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Gravity01:Clean;Gravity02:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Gravity01:Make;Gravity02:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
